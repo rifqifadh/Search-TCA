@@ -3,6 +3,7 @@ import ComposableArchitecture
 
 struct LocalSearchClient {
 	var search: (LocalSearchCompletion) -> Effect<Response, Error>
+	var endpoint: (MKLocalSearch.Request) -> Effect<Response, Error>
 
 	struct Response: Equatable {
 		var boundingRegion = CoordinateRegion()
@@ -46,6 +47,15 @@ extension LocalSearchClient {
 					.init(
 						rawValue:
 							try await MKLocalSearch(request: .init(completion: completion.rawValue!))
+							.start()
+					)
+				}
+		},
+		endpoint: { request in
+				.task {
+					.init(
+						rawValue:
+							try await MKLocalSearch(request: request)
 							.start()
 					)
 				}

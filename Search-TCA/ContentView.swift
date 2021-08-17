@@ -91,6 +91,7 @@ enum AppAction: Equatable {
   case completionsUpdated(Result<[LocalSearchCompletion], NSError>)
 	case searchResponse(Result<LocalSearchClient.Response, NSError>)
 	case tappedCompletion(LocalSearchCompletion)
+	case searchSubmitted
 }
 
 struct AppEnvironment {
@@ -146,6 +147,14 @@ let appReducer = Reducer<
 				.catchToEffect()
 				.map(AppAction.searchResponse)
 
+		case .searchSubmitted:
+			let searchRequest = MKLocalSearch.Request()
+			searchRequest.naturalLanguageQuery = state.query
+			return environment.localSearch.endpoint(searchRequest)
+				.mapError { $0 as NSError }
+				.receive(on: environment.mainQueue.animation())
+				.catchToEffect()
+				.map(AppAction.searchResponse)
 	}
 }
 
@@ -184,6 +193,9 @@ struct ContentView: View {
             }
           }
         }
+				.onSubmit(of: .search) {
+					viewStore.send(.searchSubmitted)
+				}
         .navigationTitle("Places")
         .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea(edges: .bottom)
