@@ -17,7 +17,11 @@ struct Search_TCAApp: App {
           store: .init(
             initialState: .init(),
             reducer: appReducer,
-            environment: .init(localSearchCompleter: .live)
+            environment: .init(
+							localSearch: .live,
+							localSearchCompleter: .live,
+							mainQueue: .main
+						)
           )
         )
       }

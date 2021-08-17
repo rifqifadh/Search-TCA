@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		991057F826CAAF73005B5D89 /* LocalSearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991057F726CAAF73005B5D89 /* LocalSearchClient.swift */; };
 		99C5BDE526C157780048AE7D /* Search_TCAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C5BDE426C157780048AE7D /* Search_TCAApp.swift */; };
 		99C5BDE726C157780048AE7D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C5BDE626C157780048AE7D /* ContentView.swift */; };
 		99C5BDE926C1577F0048AE7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99C5BDE826C1577F0048AE7D /* Assets.xcassets */; };
 		99C5BDEC26C1577F0048AE7D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99C5BDEB26C1577F0048AE7D /* Preview Assets.xcassets */; };
 		99C5BDF626C1577F0048AE7D /* Search_TCATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C5BDF526C1577F0048AE7D /* Search_TCATests.swift */; };
-		99C5BE0026C1577F0048AE7D /* Search_TCAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C5BDFF26C1577F0048AE7D /* Search_TCAUITests.swift */; };
 		99C5BE0E26C15A8A0048AE7D /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 99C5BE0D26C15A8A0048AE7D /* ComposableArchitecture */; };
 		99C5BE1326C162DC0048AE7D /* LocalSearchCompleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C5BE1226C162DC0048AE7D /* LocalSearchCompleter.swift */; };
 /* End PBXBuildFile section */
@@ -25,16 +25,10 @@
 			remoteGlobalIDString = 99C5BDE026C157780048AE7D;
 			remoteInfo = "Search-TCA";
 		};
-		99C5BDFC26C1577F0048AE7D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 99C5BDD926C157770048AE7D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 99C5BDE026C157780048AE7D;
-			remoteInfo = "Search-TCA";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		991057F726CAAF73005B5D89 /* LocalSearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchClient.swift; sourceTree = "<group>"; };
 		99C5BDE126C157780048AE7D /* Search-TCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Search-TCA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C5BDE426C157780048AE7D /* Search_TCAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search_TCAApp.swift; sourceTree = "<group>"; };
 		99C5BDE626C157780048AE7D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,8 +36,6 @@
 		99C5BDEB26C1577F0048AE7D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		99C5BDF126C1577F0048AE7D /* Search-TCATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Search-TCATests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C5BDF526C1577F0048AE7D /* Search_TCATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search_TCATests.swift; sourceTree = "<group>"; };
-		99C5BDFB26C1577F0048AE7D /* Search-TCAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Search-TCAUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		99C5BDFF26C1577F0048AE7D /* Search_TCAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search_TCAUITests.swift; sourceTree = "<group>"; };
 		99C5BE1126C15F700048AE7D /* Search.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Search.playground; path = ../../Search.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		99C5BE1226C162DC0048AE7D /* LocalSearchCompleter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchCompleter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,13 +56,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		99C5BDF826C1577F0048AE7D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -79,7 +64,6 @@
 			children = (
 				99C5BDE326C157780048AE7D /* Search-TCA */,
 				99C5BDF426C1577F0048AE7D /* Search-TCATests */,
-				99C5BDFE26C1577F0048AE7D /* Search-TCAUITests */,
 				99C5BDE226C157780048AE7D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,7 +73,6 @@
 			children = (
 				99C5BDE126C157780048AE7D /* Search-TCA.app */,
 				99C5BDF126C1577F0048AE7D /* Search-TCATests.xctest */,
-				99C5BDFB26C1577F0048AE7D /* Search-TCAUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,9 +83,10 @@
 				99C5BE1126C15F700048AE7D /* Search.playground */,
 				99C5BDE426C157780048AE7D /* Search_TCAApp.swift */,
 				99C5BDE626C157780048AE7D /* ContentView.swift */,
+				99C5BE1226C162DC0048AE7D /* LocalSearchCompleter.swift */,
+				991057F726CAAF73005B5D89 /* LocalSearchClient.swift */,
 				99C5BDE826C1577F0048AE7D /* Assets.xcassets */,
 				99C5BDEA26C1577F0048AE7D /* Preview Content */,
-				99C5BE1226C162DC0048AE7D /* LocalSearchCompleter.swift */,
 			);
 			path = "Search-TCA";
 			sourceTree = "<group>";
@@ -121,14 +105,6 @@
 				99C5BDF526C1577F0048AE7D /* Search_TCATests.swift */,
 			);
 			path = "Search-TCATests";
-			sourceTree = "<group>";
-		};
-		99C5BDFE26C1577F0048AE7D /* Search-TCAUITests */ = {
-			isa = PBXGroup;
-			children = (
-				99C5BDFF26C1577F0048AE7D /* Search_TCAUITests.swift */,
-			);
-			path = "Search-TCAUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,24 +148,6 @@
 			productReference = 99C5BDF126C1577F0048AE7D /* Search-TCATests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		99C5BDFA26C1577F0048AE7D /* Search-TCAUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 99C5BE0926C1577F0048AE7D /* Build configuration list for PBXNativeTarget "Search-TCAUITests" */;
-			buildPhases = (
-				99C5BDF726C1577F0048AE7D /* Sources */,
-				99C5BDF826C1577F0048AE7D /* Frameworks */,
-				99C5BDF926C1577F0048AE7D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				99C5BDFD26C1577F0048AE7D /* PBXTargetDependency */,
-			);
-			name = "Search-TCAUITests";
-			productName = "Search-TCAUITests";
-			productReference = 99C5BDFB26C1577F0048AE7D /* Search-TCAUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -204,10 +162,6 @@
 						CreatedOnToolsVersion = 13.0;
 					};
 					99C5BDF026C1577F0048AE7D = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = 99C5BDE026C157780048AE7D;
-					};
-					99C5BDFA26C1577F0048AE7D = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = 99C5BDE026C157780048AE7D;
 					};
@@ -231,7 +185,6 @@
 			targets = (
 				99C5BDE026C157780048AE7D /* Search-TCA */,
 				99C5BDF026C1577F0048AE7D /* Search-TCATests */,
-				99C5BDFA26C1577F0048AE7D /* Search-TCAUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -253,13 +206,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		99C5BDF926C1577F0048AE7D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -269,6 +215,7 @@
 			files = (
 				99C5BDE726C157780048AE7D /* ContentView.swift in Sources */,
 				99C5BE1326C162DC0048AE7D /* LocalSearchCompleter.swift in Sources */,
+				991057F826CAAF73005B5D89 /* LocalSearchClient.swift in Sources */,
 				99C5BDE526C157780048AE7D /* Search_TCAApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,14 +228,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		99C5BDF726C1577F0048AE7D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				99C5BE0026C1577F0048AE7D /* Search_TCAUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -296,11 +235,6 @@
 			isa = PBXTargetDependency;
 			target = 99C5BDE026C157780048AE7D /* Search-TCA */;
 			targetProxy = 99C5BDF226C1577F0048AE7D /* PBXContainerItemProxy */;
-		};
-		99C5BDFD26C1577F0048AE7D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 99C5BDE026C157780048AE7D /* Search-TCA */;
-			targetProxy = 99C5BDFC26C1577F0048AE7D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -490,7 +424,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UVT3R8TDBM;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -515,7 +449,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UVT3R8TDBM;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -528,52 +462,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Search-TCA.app/Search-TCA";
-			};
-			name = Release;
-		};
-		99C5BE0A26C1577F0048AE7D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UVT3R8TDBM;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rifqi.Search-TCAUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Search-TCA";
-			};
-			name = Debug;
-		};
-		99C5BE0B26C1577F0048AE7D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UVT3R8TDBM;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rifqi.Search-TCAUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Search-TCA";
 			};
 			name = Release;
 		};
@@ -603,15 +491,6 @@
 			buildConfigurations = (
 				99C5BE0726C1577F0048AE7D /* Debug */,
 				99C5BE0826C1577F0048AE7D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		99C5BE0926C1577F0048AE7D /* Build configuration list for PBXNativeTarget "Search-TCAUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				99C5BE0A26C1577F0048AE7D /* Debug */,
-				99C5BE0B26C1577F0048AE7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

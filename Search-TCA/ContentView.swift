@@ -66,8 +66,12 @@ extension CoordinateSpan {
   }
 }
 
-extension MKLocalSearchCompletion {
+extension LocalSearchCompletion: Identifiable {
   var id: [String] { [self.title, self.subtitle] }
+}
+
+extension MapItem: Identifiable {
+	var id: [String?] { [self.name, self.phoneNumber] }
 }
 
 struct AppState: Equatable {
@@ -76,18 +80,23 @@ struct AppState: Equatable {
     center: .init(latitude: 40.7, longitude: -74),
     span: .init(latitudeDelta: 0.075, longitudeDelta: 0.075)
   )
-  var completions: [MKLocalSearchCompletion] = []
+  var completions: [LocalSearchCompletion] = []
+	var mapItems: [MapItem] = []
 }
 
-enum AppAction {
+enum AppAction: Equatable {
   case onAppear
   case queryChanged(String)
   case regionChanged(CoordinateRegion)
-  case completionsUpdated(Result<[MKLocalSearchCompletion], Error>)
+  case completionsUpdated(Result<[LocalSearchCompletion], NSError>)
+	case searchResponse(Result<LocalSearchClient.Response, NSError>)
+	case tappedCompletion(LocalSearchCompletion)
 }
 
 struct AppEnvironment {
+	var localSearch: LocalSearchClient
   var localSearchCompleter: LocalSearchCompleter
+	var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
 let appReducer = Reducer<
@@ -98,6 +107,9 @@ let appReducer = Reducer<
   switch action {
     case .onAppear:
       return environment.localSearchCompleter.completions()
+				.map { result in
+					result.mapError { $0 as NSError }
+				}
         .map(AppAction.completionsUpdated)
 
     case let .completionsUpdated(.success(completions)):
@@ -117,7 +129,24 @@ let appReducer = Reducer<
       state.region = region
       return .none
 
-  }
+		case let .searchResponse(.success(response)):
+			state.region = response.boundingRegion
+			state.mapItems = response.mapItems
+			return .none
+
+		case let .searchResponse(.failure(error)):
+			// TODO: error handling
+			return .none
+
+		case let .tappedCompletion(completion):
+			state.query = completion.title
+			return environment.localSearch.search(completion)
+				.mapError { $0 as NSError }
+				.receive(on: environment.mainQueue.animation())
+				.catchToEffect()
+				.map(AppAction.searchResponse)
+
+	}
 }
 
 struct ContentView: View {
@@ -129,7 +158,11 @@ struct ContentView: View {
         coordinateRegion: viewStore.binding(
           get: \.region.rawValue,
           send: { .regionChanged(.init(rawValue: $0)) }
-        )
+        ),
+				annotationItems: viewStore.mapItems,
+				annotationContent: { mapItem in
+					MapMarker(coordinate: mapItem.placemark.coordinate)
+				}
       )
         .searchable(
           text: viewStore.binding(
@@ -140,12 +173,14 @@ struct ContentView: View {
           if viewStore.completions.isEmpty {
             EmptySearchPrompt()
           } else {
-            ForEach(viewStore.completions, id: \.id) { completion in
-              VStack(alignment: .leading) {
-                Text(completion.title)
-                Text(completion.subtitle)
-                  .font(.caption)
-              }
+            ForEach(viewStore.completions) { completion in
+							Button(action: { viewStore.send(.tappedCompletion(completion))}) {
+								VStack(alignment: .leading) {
+									Text(completion.title)
+									Text(completion.subtitle)
+										.font(.caption)
+								}
+							}
             }
           }
         }
@@ -165,7 +200,11 @@ struct ContentView_Previews: PreviewProvider {
       store: .init(
         initialState: .init(),
         reducer: appReducer,
-        environment: .init(localSearchCompleter: .live)
+        environment: .init(
+					localSearch: .live,
+					localSearchCompleter: .live,
+					mainQueue: .main
+				)
       )
     )
   }

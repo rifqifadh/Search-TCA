@@ -5,29 +5,86 @@
 //  Created by Rifqi Fadhlillah on 09/08/21.
 //
 
+import ComposableArchitecture
+import Combine
 import XCTest
 @testable import Search_TCA
+import MapKit
 
 class Search_TCATests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+	func testExample() throws {
+		let completions =
+		PassthroughSubject<Result<[LocalSearchCompletion], Error>,
+											 Never>()
+		let store = TestStore(
+			initialState: .init(),
+			reducer: appReducer,
+			environment: .init(
+				localSearch: .failing,
+				localSearchCompleter: .failing,
+				mainQueue: .immediate
+			)
+		)
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+		store.environment.localSearchCompleter.completions = {
+			completions.eraseToEffect()
+		}
+		let completion = LocalSearchCompletion(
+			subtitle: "Search Nearby",
+			title: "Apple Store"
+		)
+		store.environment.localSearchCompleter.search = { query in
+				.fireAndForget {
+					completions.send(.success([completion]))
+				}
+		}
+		let response = LocalSearchClient.Response(
+			boundingRegion: .init(
+				center: .init(latitude: 0, longitude: 0),
+				span: .init(latitudeDelta: 1, longitudeDelta: 1)
+			),
+			mapItems: [MKMapItem()]
+		)
+		store.environment.localSearch.search = { _ in
+				.init(value: response)
+		}
+		defer { completions.send(completion: .finished) }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+		store.send(.onAppear)
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+		store.send(.queryChanged("Apple")) {
+			$0.query = "Apple"
+		}
 
+		store.receive(.completionsUpdated(.success([completion]))) {
+			$0.completions = [completion]
+		}
+
+		store.send(.tappedCompletion(completion)) {
+			$0.query = "Apple Store"
+		}
+
+		store.receive(.searchResponse(.success(response))) {
+			$0.region = response.boundingRegion
+			$0.mapItems = response.mapItems
+		}
+	}
+}
+
+extension LocalSearchClient {
+	static let failing = Self(
+		search: { _ in .failing("LocalSearchClient.search is unimplemented") }
+	)
+}
+
+extension LocalSearchCompleter {
+	static let failing = Self(
+		completions: {
+			.failing("LocalSearchCompleter.completions is unimplemented")
+		},
+		search: { _ in
+				.failing("LocalSearchCompleter.search is unimplemented")
+		}
+	)
 }
