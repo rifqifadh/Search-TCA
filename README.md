@@ -1,2 +1,2 @@
 # Search-TCA
-Exploring TCA and Searchable API
+Exploring TCA(Composable Architecture) and Searchable API
